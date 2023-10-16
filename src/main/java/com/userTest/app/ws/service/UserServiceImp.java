@@ -3,6 +3,7 @@ package com.userTest.app.ws.service;
 import com.userTest.app.ws.entity.UserEntity;
 import com.userTest.app.ws.repository.UserRepository;
 import com.userTest.app.ws.shared.dto.UserDto;
+import com.userTest.app.ws.util.exception.UserException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class UserServiceImp implements UserService {
         if (!isAdult(user.getBirthdate()) || !isFrenchResident(user.getCountry())) {
             throw new IllegalArgumentException("L'utilisateur ne remplit pas les conditions requises.");
         }
-       if (checkUser!=null) throw new RuntimeException("User Already Exists !");
+       if (checkUser!=null) throw new UserException("User Already Exists !");
         UserEntity userEntity=new UserEntity();
         BeanUtils.copyProperties(user,userEntity);
         UserEntity newUser=userRepository.save(userEntity);
