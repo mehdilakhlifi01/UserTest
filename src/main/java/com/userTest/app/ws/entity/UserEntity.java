@@ -1,26 +1,39 @@
 package com.userTest.app.ws.entity;
 
+import com.userTest.app.ws.constants.GenderEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
-@Getter @Setter
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { UserEntity.USERNAME_NAME, UserEntity.BIRTHDAY_NAME, UserEntity.COUNTRY_NAME}) })
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserEntity {
+    public static final String USERNAME_NAME = "username";
+    public static final String BIRTHDAY_NAME = "birthday";
+    public static final String COUNTRY_NAME = "country";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String userId;
-    @Column(name = "username",nullable = false)
+
+    @Column(name = USERNAME_NAME)
     private String username;
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date birthdate;
-    @Column(name = "country",nullable = false)
+
+    @Column(name = BIRTHDAY_NAME)
+    private LocalDate birthday;
+
+    @Column(name = COUNTRY_NAME)
     private String country;
-    @Column(unique = true)
-    private String phoneNumber;
-    private String gender;
+
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
+
 }

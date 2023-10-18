@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "03a51905-4253-4048-bb03-3b7254657041",
+		"name": "UserTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528520"
+	},
+	"item": [
+		{
+			"name": "CreatUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"elmehdi\",\n    \"birthdate\":\"1990-04-09\",\n    \"country\":\"France\",\n    \"phoneNumber\":\"0758513411\",\n    \"gender\":\"Male\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/users/d8DvTF8ujT1Asq",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"d8DvTF8ujT1Asq"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
