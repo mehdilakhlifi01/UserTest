@@ -1,8 +1,5 @@
 package com.userTest.app.ws.constants;
 
-/**
- * This class contain only error messages constants.
- */
 public final class ErrorMessageConstant {
     public static final String VALIDATION_ERROR_MSG = "Request failed due to a validation error";
 

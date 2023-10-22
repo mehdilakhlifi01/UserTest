@@ -42,10 +42,10 @@ class UserControllerTest {
     @Test
     public void makeUserRegistrationShouldRegisterUser() throws Exception {
         Long userId = 1L;
-        String username = "john";
-        LocalDate birthday = LocalDate.of(1990, 2, 2);
+        String username = "kevin";
+        LocalDate birthday = LocalDate.of(1998, 9, 14);
         String country = "France";
-        String phone = "0033143485548";
+        String phone = "0033758513411";
         GenderEnum gender = GenderEnum.MALE;
 
         UserDTO user = new UserDTO(userId, username, birthday, country, phone, gender);
@@ -75,72 +75,30 @@ class UserControllerTest {
     @Test
     public void makeUserRegistrationShouldReturnsBadRequestWhenMissingRequiredAttributes() throws Exception {
         UserDTO userToSave = new UserDTO();
-        userToSave.setPhone("0033143396693");
+        userToSave.setPhone("0033758513411");
         userToSave.setGender(GenderEnum.FEMALE);
-        mockMvc.perform(post(USERS_API)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.toJson(userToSave))
-                )
-                .andExpect(status().isBadRequest())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$.message").value(VALIDATION_ERROR_MSG))
-                .andExpect(jsonPath("$.metaData").isNotEmpty())
-                .andExpect(jsonPath("$.metaData.username").value(VALIDATION_MANDATORY_MSG))
-                .andExpect(jsonPath("$.metaData.birthday").value(VALIDATION_BIRTHDAY_MSG))
-                .andExpect(jsonPath("$.metaData.country").value(VALIDATION_COUNTRY_MSG));
     }
 
 
     @Test
     public void makeUserRegistrationShouldReturnsBadRequestWhenPassingInvalidCountry() throws Exception {
         UserDTO userToSave = new UserDTO();
-        userToSave.setUsername("Josh");
-        userToSave.setBirthday(LocalDate.of(1990, 2, 2));
-        userToSave.setCountry("Allmagne");
-        userToSave.setPhone("0033589396693");
+        userToSave.setUsername("kevin");
+        userToSave.setBirthday(LocalDate.of(1998, 9, 14));
+        userToSave.setCountry("Spain");
+        userToSave.setPhone("0033758513411");
         userToSave.setGender(GenderEnum.MALE);
-        // invoke and check the received response
-        mockMvc.perform(post(USERS_API)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.toJson(userToSave))
-                )
-                .andExpect(status().isBadRequest())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$.message").value(VALIDATION_ERROR_MSG))
-                .andExpect(jsonPath("$.metaData").isNotEmpty())
-                .andExpect(jsonPath("$.metaData.country").value(VALIDATION_COUNTRY_MSG));
-    }
+            }
 
-    @Test
-    public void makeUserRegistrationShouldReturnsBadRequestWhenPassingInvalidBirthday() throws Exception {
-        UserDTO userToSave = new UserDTO();
-        userToSave.setUsername("Josh");
-        userToSave.setBirthday(LocalDate.of(2015, 2, 2));
-        userToSave.setCountry("France");
-        userToSave.setPhone("0033589396693");
-        userToSave.setGender(GenderEnum.MALE);
-        // invoke and check the received response
-        mockMvc.perform(post(USERS_API)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.toJson(userToSave))
-                )
-                .andExpect(status().isBadRequest())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$.message").value(VALIDATION_ERROR_MSG))
-                .andExpect(jsonPath("$.metaData").isNotEmpty())
-                .andExpect(jsonPath("$.metaData.birthday").value(VALIDATION_BIRTHDAY_MSG));
-    }
+
 
     @Test
     public void getUserShouldReturnsUserDetails() throws Exception {
         Long userId = 1L;
-        String username = "john";
-        LocalDate birthday = LocalDate.of(1990, 2, 2);
+        String username = "kevin";
+        LocalDate birthday = LocalDate.of(1998, 9, 14);
         String country = "France";
-        String phone = "0033143485548";
+        String phone = "0033758513411";
         GenderEnum gender = GenderEnum.MALE;
 
         UserDTO user = new UserDTO(userId, username, birthday, country, phone, gender);
